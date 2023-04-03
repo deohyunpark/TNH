@@ -54,8 +54,10 @@ html : 44 개 (13,606줄)
 <br>
 
 ![GO TRAVEL ERD](https://user-images.githubusercontent.com/120771212/224479301-f6ff242e-9752-4767-b162-ac1ce938c03b.png)
+<h1>주요 기능</h1>
+<li>프로젝트 UI 및 설명</li>
+https://github.com/deohyunpark/TNH/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-UI-%EB%B0%8F-%EC%84%A4%EB%AA%85
 
-<h1>Web UI</h1>
 
 <h1>팀원</h1>
 <li>곽효정</li>
