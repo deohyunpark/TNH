@@ -35,3 +35,10 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 직접 설정 ###
+EmailConfig.java
+application.properties
+application-oauth.properties
+
+

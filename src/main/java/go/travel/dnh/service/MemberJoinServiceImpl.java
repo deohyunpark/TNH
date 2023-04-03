@@ -5,10 +5,12 @@ import go.travel.dnh.repository.MemberJoinRepository;
 import go.travel.dnh.validation.MemberjoinForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.mail.internet.MimeMessage;
 import java.util.Random;
 
 @Service
@@ -79,27 +81,27 @@ public class MemberJoinServiceImpl implements MemberJoinService {
 
         answerNum = randomNum();
 
-//        //이메일 보낼 문구
-//        String setFrom = "skfk6352@naver.com";
-//        String toMail = mem_id;
-//        String title = "회원가입 인증 이메일 입니다.";
-//        String content =
-//                "인증 번호는 " + answerNum + "입니다." +
-//                        "<br>" +
-//                        "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-//
-//        try {
-//            MimeMessage message = mailSender.createMimeMessage();
-//            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-//            helper.setFrom(setFrom);
-//            helper.setTo(toMail);
-//            helper.setSubject(title);
-//            helper.setText(content, true);
-//            mailSender.send(message);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        //이메일 보낼 문구
+        String setFrom = "skfk6352@naver.com";
+        String toMail = mem_id;
+        String title = "회원가입 인증 이메일 입니다.";
+        String content =
+                "인증 번호는 " + answerNum + "입니다." +
+                        "<br>" +
+                        "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content, true);
+            mailSender.send(message);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         System.out.println(answerNum);
     }
 
@@ -109,24 +111,24 @@ public class MemberJoinServiceImpl implements MemberJoinService {
         String mem_pwd;    // 인코딩 후 비밀번호
 
         //이메일 보낼 문구
-//        String setFrom = "skfk6352@naver.com";
-//        String toMail = mem_id;
-//        String title = "바다이야기 임시 비밀번호 입니다.";
-//        String content =
-//                "임시 비밀번호는" + resultNum + "입니다." +
-//                        "<br>" +
-//                        "임시 비밀번호로 로그인한 뒤 반드시 마이페이지에서 비밀번호를 변경해주세요";
-//        try {
-//            MimeMessage message = mailSender.createMimeMessage();
-//            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-//            helper.setFrom(setFrom);
-//            helper.setTo(toMail);
-//            helper.setSubject(title);
-//            helper.setText(content,true);
-//            mailSender.send(message);
-//        }catch(Exception e) {
-//            e.printStackTrace();
-//        }
+        String setFrom = "skfk6352@naver.com";
+        String toMail = mem_id;
+        String title = "임시 비밀번호 입니다.";
+        String content =
+                "임시 비밀번호는" + randomPwd + "입니다." +
+                        "<br>" +
+                        "임시 비밀번호로 로그인한 뒤 반드시 마이페이지에서 비밀번호를 변경해주세요";
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender.send(message);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
         System.out.println("임시비밀번호" + randomPwd);
 
         mem_pwd = bCryptPasswordEncoder.encode(randomPwd);        // 비밀번호 인코딩
